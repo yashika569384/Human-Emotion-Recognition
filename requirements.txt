@@ -1,9 +1,8 @@
-tensorflow-cpu==2.18.0
-keras
+streamlit
+gdown
+tensorflow-cpu==2.12.0
+keras==2.12.0
 pandas
 numpy
-jupyter
-notebook
 tqdm
 opencv-contrib-python
-streamlit
