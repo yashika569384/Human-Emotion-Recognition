@@ -6,4 +6,4 @@ pandas
 numpy
 tqdm
 opencv-python-headless
-
+streamlit-webrtc
