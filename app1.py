@@ -7,21 +7,21 @@ import gdown
 from keras.models import load_model
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 
-# ---------------------- Step 1: Download model if not present ----------------------
+
 model_path = "facialemotionmodel1.keras"
 
 if not os.path.exists(model_path):
     url = "https://drive.google.com/uc?id=1NJCsCzDMtKKJqcnzKf9Kvbiyf0vyeVXo"
     gdown.download(url, model_path, quiet=False)
 
-# ---------------------- Step 2: Load model and setup ----------------------
+
 model = load_model(model_path)
 emotion_labels = ['angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise']
 
 # Load OpenCV's face detector
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-# ---------------------- Step 3: Define the Emotion Detection class ----------------------
+
 class EmotionDetector(VideoTransformerBase):
     def transform(self, frame):
         img = frame.to_ndarray(format="bgr24")
@@ -44,11 +44,11 @@ class EmotionDetector(VideoTransformerBase):
 
         return img
 
-# ---------------------- Step 4: Streamlit UI ----------------------
+
 st.title("😊 Real-Time Facial Emotion Recognition")
 st.markdown("This app uses your **browser webcam** to detect facial emotions using deep learning.")
 
-# ✅ This line enables webcam access through browser
+
 webrtc_streamer(
     key="emotion-detection",
     video_processor_factory=EmotionDetector,
